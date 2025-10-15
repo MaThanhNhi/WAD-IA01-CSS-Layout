@@ -17,17 +17,57 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-        }
-        
+        }        
+          
         .cta-button {
             background: linear-gradient(180deg, #d2ecfa 0%, #4aa3d8 100%);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 25px;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.1) 50%, transparent 80%);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            filter: blur(4px);
         }
         
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .cta-button:hover::after {
+            width: 105%;
+            height: 28px;
+            bottom: -32px;
+            filter: blur(5px);
+        }
+        
+        .logo-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 6px;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
         }
         
         .feature-icon {
@@ -45,11 +85,12 @@
     
     <!-- Main Container -->
     <div class="w-full md:w-11/12 lg:w-2/3 max-w-[1920px] mx-auto my-0 md:my-8 lg:my-12 bg-white shadow-none md:shadow-2xl">
-        
-        <!-- Header -->
+          <!-- Header -->
         <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 sm:px-6 md:px-12 py-4 md:py-6 gap-3 sm:gap-0">
             <div class="flex items-center gap-2 md:gap-3">
-                <img src="images/logo.svg" alt="Logo" class="w-8 h-8 md:w-10 md:h-10">
+                <div class="logo-container">
+                    <img src="images/logo.svg" alt="Logo" class="w-8 h-8 md:w-10 md:h-10">
+                </div>
                 <div>
                     <h1 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-500">X-TECH<span class="text-gray-300 font-light text-sm sm:text-base md:text-lg tracking-wide ml-1">LANDING</span></h1>
                 </div>
@@ -70,33 +111,33 @@
             </div>
 
             <!-- CTA Button with Arrow -->
-            <div class="flex flex-col items-center mb-6 md:mb-8 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
+            <div class="flex flex-col items-center mb-6 md:mb-8 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center pb-8">
                 <!-- Left spacer -->
                 <div class="hidden md:block"></div>
 
                 <!-- Center: button -->
                 <a href="#features"
-                    class="cta-button text-gray-700 px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base sm:text-lg md:text-xl no-underline text-center justify-self-center mb-3 md:mb-0 w-full sm:w-auto max-w-sm">
+                    class="cta-button text-gray-700 px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base sm:text-lg md:text-xl no-underline text-center justify-self-center mb-8 md:mb-0 w-full sm:w-auto max-w-sm">
                     GIVE IT A TRY!
                     <div class="text-xs font-normal opacity-80">
                     Get 30 days access to the fully operational product
                     </div>
                 </a>
 
-                <!-- Right: message + arrow -->
+                <!-- Right: message + arrow -->                
                 <div class="flex items-center gap-1 justify-center md:justify-self-start ml-0 md:ml-4">
                     <p class="text-blue-400 text-xs sm:text-sm md:text-base lg:text-xl font-light italic">
                     or check out the features
                     </p>
-                    <div class="relative top-6 sm:top-8 md:top-10">
-                    <img src="images/arrow_down.svg" alt="Down Arrow" class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 min-w-[48px] sm:min-w-[64px] md:min-w-[80px] lg:min-w-[96px]">
+                    <div class="relative top-6 sm:top-8 md:top-14">
+                    <img src="images/arrow_down.svg" alt="Down Arrow" class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 min-w-[64px] sm:min-w-[80px] md:min-w-[96px] lg:min-w-[128px]">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="px-4 sm:px-6 md:px-12 py-6 md:py-8 lg:py-12 bg-gray-50">
+        <section id="features" class="px-4 sm:px-6 md:px-12 py-6 md:py-8 lg:py-12">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 
                 <!-- Feature 1 -->
@@ -178,41 +219,67 @@
                 </div>
 
             </div>
-        </section>
-
+        </section>        
+        
         <!-- Testimonial Section -->
-        <section class="px-4 sm:px-6 md:px-12 py-6 md:py-8 lg:py-12 bg-white">
+        <section class="px-4 sm:px-6 md:px-12 py-6 md:py-8 lg:py-12 bg-white">              
             <h3 class="text-blue-400 text-lg sm:text-xl md:text-2xl font-light mb-4 md:mb-6 lg:mb-8 italic">
                 See what our customers are saying...
             </h3>
-            
-            <div class="bg-gray-50 rounded-lg p-4 sm:p-6 md:p-8 mb-4 md:mb-6 lg:mb-8">
-                <p class="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed mb-3 md:mb-4">
-                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."
-                </p>
-                <p class="text-right text-gray-500 text-xs sm:text-sm italic">
+            <div class="relative mb-3 md:mb-4">
+                <!-- Chat bubble container -->
+                <div class="relative rounded p-4 sm:p-6 md:p-8 flex items-center justify-center" style="background-color: #f0f0f0; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), inset 0 -1px 3px rgba(0,0,0,0.05);">
+                    <!-- SVG Chat Tail - positioned at bottom right -->
+                    <svg class="absolute bottom-0 right-8 md:right-12" width="32" height="28" viewBox="0 0 32 28" style="transform: translateY(100%);">
+                        <defs>
+                            <filter id="tailInsetShadow">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+                                <feOffset dx="2" dy="0" result="offsetblur"/>
+                                <feFlood flood-color="rgba(0,0,0,0.15)"/>
+                                <feComposite in2="offsetblur" operator="in"/>
+                                <feMerge>
+                                    <feMergeNode/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g filter="url(#tailInsetShadow)">
+                            <path d="M0 0 L0 28 L32 0 Z" fill="#f0f0f0"/>
+                            <!-- Inset shadow overlay on left vertical edge -->
+                            <path d="M0 0 L0 28 L2 26 L2 2 Z" fill="rgba(0,0,0,0.08)"/>
+                        </g>
+                    </svg>
+                    
+                    <!-- Text Content -->
+                    <p class="text-gray-500 text-xs sm:text-sm md:text-base leading-relaxed text-center italic">
+                        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."
+                    </p>
+                </div>
+                
+                <!-- Customer Name - Outside the chat bubble -->
+                <p class="text-right text-gray-500 text-xs font-semibold sm:text-sm italic mt-8 pr-8 md:pr-12">
                     Steve Jobs, Apple
                 </p>
-            </div>
-
+            </div>            
+            
             <!-- Second CTA with Arrow -->
-            <div class="flex flex-col items-center mb-6 md:mb-8 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
-                <!-- Left: arrow + message (Column 1) -->
+            <div class="flex flex-col items-center mb-6 md:mb-8 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center pb-8">
+                <!-- Left: arrow + message (Column 1) -->                
                 <div class="flex items-center gap-1 justify-center md:justify-self-end mr-0 md:mr-4 mb-3 md:mb-0 order-1 md:col-start-1">
-                    <div class="relative bottom-3 sm:bottom-4 md:bottom-4">
-                        <img src="images/arrow_up.svg" alt="Up Arrow" class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 min-w-[48px] sm:min-w-[64px] md:min-w-[80px] lg:min-w-[96px]">
+                    <div class="relative bottom-4 sm:bottom-8 md:bottom-8">
+                        <img src="images/arrow_up.svg" alt="Up Arrow" class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 min-w-[64px] sm:min-w-[80px] md:min-w-[96px] lg:min-w-[128px]">
                     </div>
                     <p class="text-blue-400 text-xs sm:text-sm md:text-base lg:text-xl font-light italic">
                         ...don't wait and
                     </p>
                 </div>
-
+                
                 <!-- Center: button (Column 2) -->
                 <a href="#contact"
-                    class="cta-button text-gray-700 px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base sm:text-lg md:text-xl no-underline text-center justify-self-center order-2 md:col-start-2 w-full sm:w-auto max-w-sm">
+                    class="cta-button text-gray-700 px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base sm:text-lg md:text-xl no-underline text-center justify-self-center order-2 md:col-start-2 w-full sm:w-auto max-w-sm mb-8 md:mb-0">
                     GIVE IT A TRY!
                     <div class="text-xs font-normal opacity-80">
-                        or check out the features bellow
+                        Get 30 days access to the fully operational product
                     </div>
                 </a>
 
@@ -231,7 +298,9 @@
                     <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
                     </p>
-                </div>                <!-- Column 2: -->
+                </div>
+
+                <!-- Column 2: -->
                 <div>
                     <h4 class="font-bold text-base md:text-lg mb-3 md:mb-4 invisible">Spacer</h4>
                     <div class="bg-gray-200 h-20 md:h-24 mb-2 md:mb-3 rounded overflow-hidden">
